@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Cost Estimation</title>
+    <style>
+        body {
+
+            background-color: #87CEEB; /* Sky blue */
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .road {
+            position: absolute;
+            bottom: -10px; /* Reduced height of road */
+            width: 100%;
+            height: 45px; /* Reduced road height */
+            background-color: #333;
+            border-top: 3px solid #fff;
+        }
+
+         /* Vehicle Animation */
+         .vehicle {
+            position: absolute;
+            bottom: 30px; /* Adjusted position to be on the road */
+            font-size: 80px; /* Increased size for better visibility */
+            animation-timing-function: linear;
+            opacity: 0.8;
+        }
+
+        .vehicle-2w {
+            right: -150px; /* Start from right side */
+            animation: moveVehicleRightToLeft 10s infinite;
+        }
+
+        .vehicle-4w {
+            right: -250px; /* Start from right side */
+            animation: moveVehicleRightToLeft 12s infinite;
+        }
+
+         .vehicle-3w {
+            right: -150px; /* Start from right side */
+            animation: moveVehicleRightToLeft 15s infinite;
+        }
+
+        .vehicle-5w {
+            right: -250px; /* Start from right side */
+            animation: moveVehicleRightToLeft 17s infinite;
+        }
+
+        @keyframes moveVehicleRightToLeft {
+            0% {
+                right: -150px;
+            }
+            100% {
+                right: 100%;
+            }
+        }
+          /* Cloud - Stationary */
+          .cloud {
+            position: absolute;
+            top: 10%;
+            font-size: 60px;
+            opacity: 0.6;
+        }
+
+        .cloud-1 {
+            left: 10%;
+        }
+
+        .cloud-2 {
+            left: 40%;
+        }
+
+        .cloud-3 {
+            left: 70%;
+        }
+
+         /* Flight - Moving from Bottom Left to Top Right */
+         .flight {
+            position: absolute;
+            font-size: 40px;
+            animation: moveFlightBottomLeftToTopRight 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .flight-1 {
+            bottom: -200px;
+            left: -200px;
+            animation-duration: 30s;
+        }
+
+        .flight-2 {
+            bottom: -250px;
+            left: -250px;
+            animation-duration: 35s;
+        }
+
+        .flight-3 {
+            top: 100px;
+            left: -200px;
+            animation-duration: 20s;
+
+        }
+
+        .flight-4 {
+            bottom: -250px;
+            right: 250px;
+            animation-duration: 15s;
+        }
+
+        @keyframes moveFlightBottomLeftToTopRight {
+            0% {
+                bottom: -200px;
+                left: -200px;
+            }
+            100% {
+                bottom: 100%;
+                left: 100%;
+            }
+        }
+
+
+         .fly {
+            font-size: 2rem;
+            position: absolute;
+            top: -50px;
+            animation: fall 5s infinite ease-in-out;
+        }
+
+        .flight-5 {
+            animation-duration: 25s;
+        }
+
+        @keyframes fall {
+            0% { top: -50px; }
+            100% { top: 100vh; }
+        }
+
+
+         /* Helicopter - Moving Right to Left */
+         .helicopter {
+            position: absolute;
+            font-size: 50px;
+            animation: moveHelicopterRightToLeft 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .helicopter-1 {
+            right: -250px;
+            animation-duration: 40s;
+        }
+
+        .helicopter-2 {
+            right: -300px;
+            animation-duration: 45s;
+        }
+
+        @keyframes moveHelicopterRightToLeft {
+            0% {
+                right: -250px;
+            }
+            100% {
+                right: 100%;
+            }
+        }
+
+
+
+
+        h1, h2 {
+            font-size: 2rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+
+        .container {
+            position: relative;
+            padding: 20px;
+            border: 2px solid white;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 400px;
+            z-index: 10;
+        }
+
+        .container p {
+            margin-bottom: 15px;
+        }
+
+        .container h2 {
+            margin-top: 20px;
+        }
+
+        #fasttrack-section {
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+        <!-- 2-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-2w">🛵</div>
+
+    <!-- 4-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-4w">🚗</div>
+
+         <div class="vehicle vehicle-3w">🚓</div>
+
+    <!-- 4-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-5w">🚎</div>
+
+    <!-- Clouds (Stationary) -->
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+
+    <!-- Flight Animation (Moving from Bottom Left to Top Right) -->
+    <div class="flight flight-1">✈️</div>
+    <div class="flight flight-2">✈️</div>
+        <div class="flight flight-3"> ✈︎ </div>
+    <div class="flight flight-4">🛩️</div>
+    <div class="fly flight-5">🪂</div>
+
+    <!-- Helicopter Animation (Moving Right to Left) -->
+    <div class="helicopter helicopter-1">🚁</div>
+    <div class="helicopter helicopter-2">🚁</div>
+
+    <!-- Road (Fixed at the bottom) -->
+    <div class="road"></div>
+
+
+    <!-- Content -->
+    <div class="container">
+        <h1>Travel Cost Estimation</h1>
+        <p><strong>From:</strong> {{ user_location }}</p>
+        <p><strong>To:</strong> {{ destination }}</p>
+        <p><strong>Distance:</strong> {{ distance }} km</p>
+        <p><strong>Vehicle:</strong> {{ vehicle_type }}</p>
+        <p><strong>Fuel Cost:</strong> ₹{{ fuel_cost }}</p>
+        <p><strong>Accommodation Type:</strong> {{ accommodation_type }}</p>
+        <p><strong>Accommodation Cost:</strong> ₹{{ accommodation_cost }}</p>
+        <p><strong>Food Cost:</strong> ₹{{ food_cost }}</p>
+
+        <!-- FastTrack Section -->
+        <div id="fasttrack-section">
+            <p><strong>FastTrack Cost:</strong> ₹{{ fasttrack_cost }}</p>
+        </div>
+
+        <p><strong>Number of Days:</strong> {{ days_of_stay }}</p>
+        <h2><strong>Total Travel Cost:</strong> ₹{{ travel_cost }}</h2>
+    </div>
+
+    <script>
+        // Function to toggle FastTrack section based on vehicle type
+        function toggleFastTrack() {
+            const vehicleType = '{{ vehicle_type }}'; // Get the vehicle type from server-rendered data
+            const fasttrackSection = document.getElementById('fasttrack-section');
+
+            if (vehicleType === '4-Wheeler') {
+                fasttrackSection.style.display = 'block';
+            } else {
+                fasttrackSection.style.display = 'none';
+            }
+        }
+
+        // Call the function to toggle FastTrack visibility on page load
+        window.onload = toggleFastTrack;
+    </script>
+</body>
+</html>

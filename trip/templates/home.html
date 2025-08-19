@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Form with Vehicle and Flight Animation</title>
+    <style>
+        body {
+            background-color: #87CEEB; /* Sky blue */
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Road */
+        .road {
+            position: absolute;
+            bottom: -10px; /* Reduced height of road */
+            width: 100%;
+            height: 45px; /* Reduced road height */
+            background-color: #333;
+            border-top: 3px solid #fff;
+        }
+
+        /* Vehicle Animation */
+        .vehicle {
+            position: absolute;
+            bottom: 30px; /* Adjusted position to be on the road */
+            font-size: 80px; /* Increased size for better visibility */
+            animation-timing-function: linear;
+            opacity: 0.8;
+        }
+
+        .vehicle-2w {
+            right: -150px; /* Start from right side */
+            animation: moveVehicleRightToLeft 10s infinite;
+        }
+
+        .vehicle-4w {
+            right: -250px; /* Start from right side */
+            animation: moveVehicleRightToLeft 12s infinite;
+        }
+
+         .vehicle-3w {
+            right: -150px; /* Start from right side */
+            animation: moveVehicleRightToLeft 15s infinite;
+        }
+
+        .vehicle-5w {
+            right: -250px; /* Start from right side */
+            animation: moveVehicleRightToLeft 17s infinite;
+        }
+
+        @keyframes moveVehicleRightToLeft {
+            0% {
+                right: -150px;
+            }
+            100% {
+                right: 100%;
+            }
+        }
+
+        /* Cloud - Stationary */
+        .cloud {
+            position: absolute;
+            top: 10%;
+            font-size: 60px;
+            opacity: 0.6;
+        }
+
+        .cloud-1 {
+            left: 10%;
+        }
+
+        .cloud-2 {
+            left: 40%;
+        }
+
+        .cloud-3 {
+            left: 70%;
+        }
+
+        /* Flight - Moving from Bottom Left to Top Right */
+        .flight {
+            position: absolute;
+            font-size: 40px;
+            animation: moveFlightBottomLeftToTopRight 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .flight-1 {
+            bottom: -200px;
+            left: -200px;
+            animation-duration: 30s;
+        }
+
+        .flight-2 {
+            bottom: -250px;
+            left: -250px;
+            animation-duration: 35s;
+        }
+
+         .flight-3 {
+            top: 100px;
+            left: -200px;
+            animation-duration: 20s;
+
+        }
+
+        .flight-4 {
+            bottom: -250px;
+            right: 250px;
+            animation-duration: 15s;
+        }
+
+        @keyframes moveFlightBottomLeftToTopRight {
+            0% {
+                bottom: -200px;
+                left: -200px;
+            }
+            100% {
+                bottom: 100%;
+                left: 100%;
+            }
+        }
+
+         .fly {
+            font-size: 2rem;
+            position: absolute;
+            top: -50px;
+            animation: fall 5s infinite ease-in-out;
+        }
+
+        .flight-5 {
+            animation-duration: 25s;
+        }
+
+        @keyframes fall {
+            0% { top: -50px; }
+            100% { top: 100vh; }
+        }
+
+        /* Helicopter - Moving Right to Left */
+        .helicopter {
+            position: absolute;
+            font-size: 50px;
+            animation: moveHelicopterRightToLeft 20s linear infinite;
+            opacity: 0.8;
+        }
+
+        .helicopter-1 {
+            right: -250px;
+            animation-duration: 40s;
+        }
+
+        .helicopter-2 {
+            right: -300px;
+            animation-duration: 45s;
+        }
+
+        @keyframes moveHelicopterRightToLeft {
+            0% {
+                right: -250px;
+            }
+            100% {
+                right: 100%;
+            }
+        }
+
+        form {
+            position: relative;
+            margin: 40px;
+            padding: 40px;
+            border: 2px solid white;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            width: 400px;
+        }
+
+        label, select, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <!-- 2-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-2w">🛵</div>
+
+    <!-- 4-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-4w">🚗</div>
+
+     <div class="vehicle vehicle-3w">🚓</div>
+
+    <!-- 4-Wheeler Vehicle Animation -->
+    <div class="vehicle vehicle-5w">🚎</div>
+
+    <!-- Clouds (Stationary) -->
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+
+    <!-- Flight Animation (Moving from Bottom Left to Top Right) -->
+    <div class="flight flight-1">✈️</div>
+    <div class="flight flight-2">✈️</div>
+     <div class="flight flight-3"> ✈︎ </div>
+    <div class="flight flight-4">🛩️</div>
+    <div class="fly flight-5">🪂</div>
+
+    <!-- Helicopter Animation (Moving Right to Left) -->
+    <div class="helicopter helicopter-1">🚁</div>
+    <div class="helicopter helicopter-2">🚁</div>
+
+    <!-- Road (Fixed at the bottom) -->
+    <div class="road"></div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="user_location">Your Location:</label>
+        <select name="user_location">
+            <option value="Ariyalur">Ariyalur</option>
+            <option value="Chengalpattu">Chengalpattu</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Cuddalore">Cuddalore</option>
+            <option value="Dharmapuri">Dharmapuri</option>
+            <option value="Dindigul">Dindigul</option>
+            <option value="Erode">Erode</option>
+            <option value="Kallakurichi">Kallakurichi</option>
+            <option value="Kanchipuram">Kanchipuram</option>
+            <option value="Kanniyakumari">Kanniyakumari</option>
+            <option value="Karur">Karur</option>
+            <option value="Krishnagiri">Krishnagiri</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Mayiladuthurai">Mayiladuthurai</option>
+            <option value="Nagapattinam">Nagapattinam</option>
+            <option value="Namakkal">Namakkal</option>
+            <option value="Nilgiris">Nilgiris</option>
+            <option value="Perambalur">Perambalur</option>
+            <option value="Pudukkottai">Pudukkottai</option>
+            <option value="Ramanathapuram">Ramanathapuram</option>
+            <option value="Ranipet">Ranipet</option>
+            <option value="Salem">Salem</option>
+            <option value="Sivagangai">Sivagangai</option>
+            <option value="Tenkasi">Tenkasi</option>
+            <option value="Thanjavur">Thanjavur</option>
+            <option value="Theni">Theni</option>
+            <option value="Thiruvallur">Thiruvallur</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+            <option value="Thoothukudi">Thoothukudi</option>
+            <option value="Tiruchirappalli">Tiruchirappalli</option>
+            <option value="Tirunelveli">Tirunelveli</option>
+            <option value="Tirupathur">Tirupathur</option>
+            <option value="Tiruppur">Tiruppur</option>
+            <option value="Tiruvannamalai">Tiruvannamalai</option>
+            <option value="Vellore">Vellore</option>
+            <option value="Viluppuram">Viluppuram</option>
+            <option value="Virudhunagar">Virudhunagar</option>
+        </select><br><br>
+
+        <label for="destination">Destination:</label>
+        <select name="destination">
+            <option value="Ariyalur">Ariyalur</option>
+            <option value="Chengalpattu">Chengalpattu</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Cuddalore">Cuddalore</option>
+            <option value="Dharmapuri">Dharmapuri</option>
+            <option value="Dindigul">Dindigul</option>
+            <option value="Erode">Erode</option>
+            <option value="Kallakurichi">Kallakurichi</option>
+            <option value="Kanchipuram">Kanchipuram</option>
+            <option value="Kanniyakumari">Kanniyakumari</option>
+            <option value="Karur">Karur</option>
+            <option value="Krishnagiri">Krishnagiri</option>
+            <option value="Madurai">Madurai</option>
+            <option value="Mayiladuthurai">Mayiladuthurai</option>
+            <option value="Nagapattinam">Nagapattinam</option>
+            <option value="Namakkal">Namakkal</option>
+            <option value="Nilgiris">Nilgiris</option>
+            <option value="Perambalur">Perambalur</option>
+            <option value="Pudukkottai">Pudukkottai</option>
+            <option value="Ramanathapuram">Ramanathapuram</option>
+            <option value="Ranipet">Ranipet</option>
+            <option value="Salem">Salem</option>
+            <option value="Sivagangai">Sivagangai</option>
+            <option value="Tenkasi">Tenkasi</option>
+            <option value="Thanjavur">Thanjavur</option>
+            <option value="Theni">Theni</option>
+            <option value="Thiruvallur">Thiruvallur</option>
+            <option value="Thiruvarur">Thiruvarur</option>
+            <option value="Thoothukudi">Thoothukudi</option>
+            <option value="Tiruchirappalli">Tiruchirappalli</option>
+            <option value="Tirunelveli">Tirunelveli</option>
+            <option value="Tirupathur">Tirupathur</option>
+            <option value="Tiruppur">Tiruppur</option>
+            <option value="Tiruvannamalai">Tiruvannamalai</option>
+            <option value="Vellore">Vellore</option>
+            <option value="Viluppuram">Viluppuram</option>
+            <option value="Virudhunagar">Virudhunagar</option>
+        </select><br><br>
+
+        <label for="vehicle_type">Choose Vehicle Type:</label>
+        <select name="vehicle_type">
+            <option value="1">2 Wheeler</option>
+            <option value="2">4 Wheeler</option>
+        </select><br><br>
+
+        <label for="accommodation_type">Accommodation Type:</label>
+        <select name="accommodation_type">
+            <option value="home_stay">Home Stay</option>
+            <option value="resort">Resort</option>
+            <option value="pg_hostel">PG Hostel</option>
+            <option value="Luxury_Hotel">Luxury Hotel</option>
+            <option value="Guest_House">Guest House</option>
+            <option value="Dormitory">Dormitory</option>
+            <option value="Villa">Villa</option>
+            <option value="Boutique_Hotel">Boutique Hotel</option>
+        </select><br><br>
+
+        <label for="days_of_stay">Number of Days:</label>
+        <input type="number" name="days_of_stay" min="1" required><br><br>
+
+        <input type="submit" value="Calculate Travel Cost">
+    </form>
